@@ -1,0 +1,658 @@
+<html>
+<body>
+<pre>
+<h1>�Vision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ��Vision V5.40.0.0
+Copyright (C) 2024 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: adsda ada, ada, LIC=MPPLD-8FHM0-PC7J8-3ILKB-ILF2Q-5VC0F
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.40.0.3
+Toolchain Path:  D:\keil\core\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.22
+Assembler:       Armasm.exe V6.22
+Linker/Locator:  ArmLink.exe V6.22
+Library Manager: ArmAr.exe V6.22
+Hex Converter:   FromElf.exe V6.22
+CPU DLL:         SARMCM3.DLL V5.40.0.3
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      CMSIS_AGDI.dll V1.33.18.0
+Dialog DLL:      TCM.DLL V1.56.4.0
+ 
+<h2>Project:</h2>
+E:\STM32PRJ\F407VGT6\RoboTech_Courier\MDK-ARM\Express_courier.uvprojx
+Project File Date:  09/17/2025
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.22', folder: 'D:\keil\core\ARM\ARMCLANG\Bin'
+Build target 'Express_courier'
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(130): error: call to 'abs' is ambiguous
+  130 |         this->v_max = std::abs(max_v);
+      |                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(131): error: call to 'abs' is ambiguous
+  131 |         this->a_max = std::abs(max_a);
+      |                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(157): error: call to 'abs' is ambiguous
+  157 |         float d_a = 0.5f * (this->v_max * this->v_max) / std::abs(this->a_max);
+      |                                                          ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(160): error: call to 'abs' is ambiguous
+  160 |         if (std::abs(dx) > 2.0f * d_a) {
+      |             ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(163): error: call to 'abs' is ambiguous
+  163 |             t_accel = this->v_max / std::abs(this->a_max);
+      |                                     ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(164): error: call to 'abs' is ambiguous
+  164 |             float d_u = std::abs(dx) - 2.0f * d_a;
+      |                         ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(172): error: call to 'abs' is ambiguous
+  172 |             t_accel = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                 ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(172): error: call to 'abs' is ambiguous
+  172 |             t_accel = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                                ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(176): error: call to 'abs' is ambiguous
+  176 |                 std::abs(this->a_max) * t_accel * direction; // 更新实际达到的最大速度
+      |                 ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(192): error: call to 'abs' is ambiguous
+  192 |         this->a_max = std::abs(max_a);
+      |                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(219): error: call to 'abs' is ambiguous
+  219 |         float t_accel_min = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(219): error: call to 'abs' is ambiguous
+  219 |         float t_accel_min = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                                      ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(230): error: call to 'abs' is ambiguous
+  230 |             this->v_max = std::abs(this->a_max) * t_accel * direction;
+      |                           ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(238): error: call to 'abs' is ambiguous
+  238 |             float temp_t_accel = (max_t - std::sqrt(max_t * max_t - 4.0f * std::abs(dx) / std::abs(this->a_max))) / 2.0f;
+      |                                                                            ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(238): error: call to 'abs' is ambiguous
+  238 |             float temp_t_accel = (max_t - std::sqrt(max_t * max_t - 4.0f * std::abs(dx) / std::abs(this->a_max))) / 2.0f;
+      |                                                                                           ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+lib/Lib_Math.cpp(11): warning: In file included from...
+lib\Lib_Math.h(246): error: call to 'abs' is ambiguous
+  246 |             this->v_max = std::abs(this->a_max) * t_accel * direction;
+      |                           ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+16 errors generated.
+compiling Lib_Math.cpp...
+bsp/controller.cpp(11): warning: In file included from...
+bsp\controller.h(14): warning: In file included from...
+bsp\Kinematic.h(76): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   76 | inline KinematicOdom_t KinematicOdom;
+      | ^
+bsp/controller.cpp(11): warning: In file included from...
+bsp\controller.h(70): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   70 |     pid_Increment_template_t<float, float> pid_x = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
+      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/controller.cpp(11): warning: In file included from...
+bsp\controller.h(71): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   71 |     pid_Increment_template_t<float, float> pid_y = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
+      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/controller.cpp(11): warning: In file included from...
+bsp\controller.h(72): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   72 |     pid_Increment_template_t<float, float> pid_yaw = pid_Increment_template_t<float, float>({0.6, 2, 0.2, -0.6, 0.6});
+      |                                                      ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/controller.cpp(11): warning: In file included from...
+bsp\controller.h(74): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   74 | inline StepController_t Controller; // 全局控制器实例
+      | ^
+2 warnings and 3 errors generated.
+compiling controller.cpp...
+bsp/maincpp.cpp(15): warning: In file included from...
+bsp\Kinematic.h(76): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   76 | inline KinematicOdom_t KinematicOdom;
+      | ^
+bsp/maincpp.cpp(17): warning: In file included from...
+bsp\controller.h(70): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   70 |     pid_Increment_template_t<float, float> pid_x = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
+      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/maincpp.cpp(17): warning: In file included from...
+bsp\controller.h(71): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   71 |     pid_Increment_template_t<float, float> pid_y = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
+      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/maincpp.cpp(17): warning: In file included from...
+bsp\controller.h(72): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   72 |     pid_Increment_template_t<float, float> pid_yaw = pid_Increment_template_t<float, float>({0.6, 2, 0.2, -0.6, 0.6});
+      |                                                      ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/maincpp.cpp(17): warning: In file included from...
+bsp\controller.h(74): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   74 | inline StepController_t Controller; // 全局控制器实例
+      | ^
+bsp/maincpp.cpp(18): warning: In file included from...
+bsp\host_control.hpp(18): warning: In file included from...
+bsp\planner.h(38): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   38 | inline Planner_t Planner;
+      | ^
+bsp/maincpp.cpp(18): warning: In file included from...
+bsp\host_control.hpp(128): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+  128 | inline HostControl_t * HostPtr = nullptr; // 全局指针,用于访问上位机控制类
+      | ^
+bsp/maincpp.cpp(22): warning: In file included from...
+bsp\ch040.h(61): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   61 | inline ch040_t ch040; // 声明一个全局变量
+      | ^
+5 warnings and 3 errors generated.
+compiling maincpp.cpp...
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(130): error: call to 'abs' is ambiguous
+  130 |         this->v_max = std::abs(max_v);
+      |                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(131): error: call to 'abs' is ambiguous
+  131 |         this->a_max = std::abs(max_a);
+      |                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(157): error: call to 'abs' is ambiguous
+  157 |         float d_a = 0.5f * (this->v_max * this->v_max) / std::abs(this->a_max);
+      |                                                          ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(160): error: call to 'abs' is ambiguous
+  160 |         if (std::abs(dx) > 2.0f * d_a) {
+      |             ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(163): error: call to 'abs' is ambiguous
+  163 |             t_accel = this->v_max / std::abs(this->a_max);
+      |                                     ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(164): error: call to 'abs' is ambiguous
+  164 |             float d_u = std::abs(dx) - 2.0f * d_a;
+      |                         ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(172): error: call to 'abs' is ambiguous
+  172 |             t_accel = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                 ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(172): error: call to 'abs' is ambiguous
+  172 |             t_accel = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                                ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(176): error: call to 'abs' is ambiguous
+  176 |                 std::abs(this->a_max) * t_accel * direction; // 更新实际达到的最大速度
+      |                 ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(192): error: call to 'abs' is ambiguous
+  192 |         this->a_max = std::abs(max_a);
+      |                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(219): error: call to 'abs' is ambiguous
+  219 |         float t_accel_min = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                       ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(219): error: call to 'abs' is ambiguous
+  219 |         float t_accel_min = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+      |                                                      ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(230): error: call to 'abs' is ambiguous
+  230 |             this->v_max = std::abs(this->a_max) * t_accel * direction;
+      |                           ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(238): error: call to 'abs' is ambiguous
+  238 |             float temp_t_accel = (max_t - std::sqrt(max_t * max_t - 4.0f * std::abs(dx) / std::abs(this->a_max))) / 2.0f;
+      |                                                                            ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(238): error: call to 'abs' is ambiguous
+  238 |             float temp_t_accel = (max_t - std::sqrt(max_t * max_t - 4.0f * std::abs(dx) / std::abs(this->a_max))) / 2.0f;
+      |                                                                                           ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(3): warning: In file included from...
+./lib\Lib_Math.h(246): error: call to 'abs' is ambiguous
+  246 |             this->v_max = std::abs(this->a_max) * t_accel * direction;
+      |                           ^~~~~~~~
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(560): note: candidate function
+  560 | extern _ARMABI_PURE int abs(int /*j*/);
+      |                         ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(586): note: candidate function
+  586 |    extern "C++" inline _ARMABI_PURE long abs(long int x) { return labs(x); }
+      |                                          ^
+D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
+  617 |    extern "C++" inline _ARMABI_PURE __LONGLONG abs(__LONGLONG x) { return llabs(x); }
+      |                                                ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(5): warning: In file included from...
+bsp\Kinematic.h(76): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   76 | inline KinematicOdom_t KinematicOdom;
+      | ^
+bsp/planner.cpp(1): warning: In file included from...
+bsp\planner.h(38): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   38 | inline Planner_t Planner;
+      | ^
+bsp/planner.cpp(2): warning: In file included from...
+bsp\controller.h(70): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   70 |     pid_Increment_template_t<float, float> pid_x = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
+      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/planner.cpp(2): warning: In file included from...
+bsp\controller.h(71): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   71 |     pid_Increment_template_t<float, float> pid_y = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
+      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/planner.cpp(2): warning: In file included from...
+bsp\controller.h(72): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
+   72 |     pid_Increment_template_t<float, float> pid_yaw = pid_Increment_template_t<float, float>({0.6, 2, 0.2, -0.6, 0.6});
+      |                                                      ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
+   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
+   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
+      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+bsp/planner.cpp(2): warning: In file included from...
+bsp\controller.h(74): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   74 | inline StepController_t Controller; // 全局控制器实例
+      | ^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+3 warnings and 20 errors generated.
+compiling planner.cpp...
+"Express_courier\Express_courier.axf" - 41 Error(s), 10 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                https://www.keil.com/pack/ARM.CMSIS.6.1.0.pack
+                ARM::CMSIS@6.1.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 6.1.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.3.1.0.pack
+                Keil::STM32F4xx_DFP@3.1.0
+                STMicroelectronics STM32F4 Series Device Support
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_Express_courier
+  D:/keil/pack/ARM/CMSIS/6.1.0/CMSIS/Core/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE@6.1.0
+      Include file:  CMSIS/Core/Include/tz_context.h
+Target not created.
+Build Time Elapsed:  00:00:02
+</pre>
+</body>
+</html>
