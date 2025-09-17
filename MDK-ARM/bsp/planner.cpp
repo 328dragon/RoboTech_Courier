@@ -97,8 +97,8 @@ SimpleStatus_t &Planner_t::LoactaionCloseControl(const odom_t &target_odom, floa
     _trapezoidal_spline[2] = TrapezoidalSpline(current_odom.yaw, yaw_target_optimize, max_angular, _max_angular_acc);
     // 重置时间
     _current_t = 0;
-    _target_t=std::max(_trapezoidal_spline[0].max_t(), _trapezoidal_spline[1].max_t());
-    _target_t = std::max(_target_t, _trapezoidal_spline[2].max_t());
+    _target_t=fmax(_trapezoidal_spline[0].max_t(), _trapezoidal_spline[1].max_t());
+    _target_t = fmax(_target_t, _trapezoidal_spline[2].max_t());
     // 设置控制模式
     KinematicOdom.OdomError = target_error;
     _controlmode = PlannerMode_t::CloseControl;

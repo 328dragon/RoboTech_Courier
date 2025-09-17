@@ -8,7 +8,6 @@
  *
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
  */
-__asm(".global __use_no_semihosting");
 #include "maincpp.h"
 #define PI 3.1415926535
 #include "FreeRTOS.h"

@@ -2,6 +2,7 @@
 #define __LIB_MATH_H
 #include "stdint.h"
 #include "math.h"
+
 float Sqrt(float x);
 float pow(float x, uint8_t n);
 struct Point
@@ -127,8 +128,8 @@ class TrapezoidalSpline
     TrapezoidalSpline(float x_start, float x_end, float max_v, float max_a) 
     {
         // 确保输入的约束值是正数，直接取绝对值
-        this->v_max = std::abs(max_v);
-        this->a_max = std::abs(max_a);
+        this->v_max =abs(max_v);
+        this->a_max =abs(max_a);
 
         // 如果运动距离为零，或者约束无效，则运动时间为零
         if (x_end == x_start || this->v_max <= 0.0f || this->a_max <= 0.0f) 
@@ -154,14 +155,14 @@ class TrapezoidalSpline
         this->a_max *= direction;
 
         // 计算加速/减速阶段的位移
-        float d_a = 0.5f * (this->v_max * this->v_max) / std::abs(this->a_max);
+        float d_a = 0.5f * (this->v_max * this->v_max) /abs(this->a_max);
 
         // 判断是三角形轨迹还是梯形轨迹
-        if (std::abs(dx) > 2.0f * d_a) {
+        if (abs(dx) > 2.0f * d_a) {
             // 梯形轨迹：包含匀速段
             is_trapezoidal = true;
-            t_accel = this->v_max / std::abs(this->a_max);
-            float d_u = std::abs(dx) - 2.0f * d_a;
+            t_accel = this->v_max /abs(this->a_max);
+            float d_u =abs(dx) - 2.0f * d_a;
             t_coast = d_u / this->v_max;
             t_decel = t_accel;
         } 
@@ -169,11 +170,11 @@ class TrapezoidalSpline
         {
             // 三角形轨迹：没有匀速段
             is_trapezoidal = false;
-            t_accel = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+            t_accel = std::sqrt(abs(dx) /abs(this->a_max));
             t_coast = 0.0f;
             t_decel = t_accel;
             this->v_max =
-                std::abs(this->a_max) * t_accel * direction; // 更新实际达到的最大速度
+               abs(this->a_max) * t_accel * direction; // 更新实际达到的最大速度
         }
 
         // 计算运动总时间
@@ -189,7 +190,7 @@ class TrapezoidalSpline
     void byTimeAndAcc(float x_start, float x_end, float max_t, float max_a)
     {
         // 确保输入的约束值是正数，直接取绝对值
-        this->a_max = std::abs(max_a);
+        this->a_max =abs(max_a);
 
         // 如果运动距离为零，或者约束无效，则运动时间为零
         if (x_end == x_start || this->a_max <= 0.0f || max_t <= 0.0f)
@@ -216,7 +217,7 @@ class TrapezoidalSpline
         this->a_max *= direction;
 
         // 加速/减速阶段所需的最短时间
-        float t_accel_min = std::sqrt(std::abs(dx) / std::abs(this->a_max));
+        float t_accel_min = std::sqrt(abs(dx) /abs(this->a_max));
 
         // 判断是三角形轨迹还是梯形轨迹
         if (max_t <= 2.0f * t_accel_min)
@@ -227,7 +228,7 @@ class TrapezoidalSpline
             t_coast = 0.0f;
             t_decel = t_accel;
             // 更新实际达到的最大速度
-            this->v_max = std::abs(this->a_max) * t_accel * direction;
+            this->v_max =abs(this->a_max) * t_accel * direction;
             t_end = 2.0f * t_accel; // 运动总时间
         }
         else
@@ -235,7 +236,7 @@ class TrapezoidalSpline
             // 梯形轨迹：包含匀速段，时间充足
             is_trapezoidal = true;
             // 通过总时间计算加速时间
-            float temp_t_accel = (max_t - std::sqrt(max_t * max_t - 4.0f * std::abs(dx) / std::abs(this->a_max))) / 2.0f;
+            float temp_t_accel = (max_t - std::sqrt(max_t * max_t - 4.0f *abs(dx) /abs(this->a_max))) / 2.0f;
             t_accel = temp_t_accel;
             t_decel = t_accel;
 
@@ -243,7 +244,7 @@ class TrapezoidalSpline
             t_coast = max_t - 2.0f * t_accel;
 
             // 计算最大速度
-            this->v_max = std::abs(this->a_max) * t_accel * direction;
+            this->v_max =abs(this->a_max) * t_accel * direction;
             t_end = max_t; // 运动总时间
         }
     }
