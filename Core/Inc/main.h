@@ -36,6 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+	extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart3;
 extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart6;
@@ -59,6 +60,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define gray_1_Pin GPIO_PIN_5
+#define gray_1_GPIO_Port GPIOC
+#define gray_2_Pin GPIO_PIN_7
+#define gray_2_GPIO_Port GPIOE
+#define gray_3_Pin GPIO_PIN_10
+#define gray_3_GPIO_Port GPIOE
+#define gray_4_Pin GPIO_PIN_12
+#define gray_4_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 
