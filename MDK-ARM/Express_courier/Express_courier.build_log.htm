@@ -237,118 +237,6 @@ D:\keil\core\ARM\ARMCLANG\bin\..\include\stdlib.h(617): note: candidate function
       |                                                ^
 16 errors generated.
 compiling Lib_Math.cpp...
-bsp/controller.cpp(11): warning: In file included from...
-bsp\controller.h(14): warning: In file included from...
-bsp\Kinematic.h(76): warning: inline variables are a C++17 extension [-Wc++17-extensions]
-   76 | inline KinematicOdom_t KinematicOdom;
-      | ^
-bsp/controller.cpp(11): warning: In file included from...
-bsp\controller.h(70): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   70 |     pid_Increment_template_t<float, float> pid_x = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
-      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/controller.cpp(11): warning: In file included from...
-bsp\controller.h(71): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   71 |     pid_Increment_template_t<float, float> pid_y = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
-      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/controller.cpp(11): warning: In file included from...
-bsp\controller.h(72): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   72 |     pid_Increment_template_t<float, float> pid_yaw = pid_Increment_template_t<float, float>({0.6, 2, 0.2, -0.6, 0.6});
-      |                                                      ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/controller.cpp(11): warning: In file included from...
-bsp\controller.h(74): warning: inline variables are a C++17 extension [-Wc++17-extensions]
-   74 | inline StepController_t Controller; // 全局控制器实例
-      | ^
-2 warnings and 3 errors generated.
-compiling controller.cpp...
-bsp/maincpp.cpp(15): warning: In file included from...
-bsp\Kinematic.h(76): warning: inline variables are a C++17 extension [-Wc++17-extensions]
-   76 | inline KinematicOdom_t KinematicOdom;
-      | ^
-bsp/maincpp.cpp(17): warning: In file included from...
-bsp\controller.h(70): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   70 |     pid_Increment_template_t<float, float> pid_x = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
-      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/maincpp.cpp(17): warning: In file included from...
-bsp\controller.h(71): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   71 |     pid_Increment_template_t<float, float> pid_y = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
-      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/maincpp.cpp(17): warning: In file included from...
-bsp\controller.h(72): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   72 |     pid_Increment_template_t<float, float> pid_yaw = pid_Increment_template_t<float, float>({0.6, 2, 0.2, -0.6, 0.6});
-      |                                                      ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/maincpp.cpp(17): warning: In file included from...
-bsp\controller.h(74): warning: inline variables are a C++17 extension [-Wc++17-extensions]
-   74 | inline StepController_t Controller; // 全局控制器实例
-      | ^
-bsp/maincpp.cpp(18): warning: In file included from...
-bsp\host_control.hpp(18): warning: In file included from...
-bsp\planner.h(38): warning: inline variables are a C++17 extension [-Wc++17-extensions]
-   38 | inline Planner_t Planner;
-      | ^
-bsp/maincpp.cpp(18): warning: In file included from...
-bsp\host_control.hpp(128): warning: inline variables are a C++17 extension [-Wc++17-extensions]
-  128 | inline HostControl_t * HostPtr = nullptr; // 全局指针,用于访问上位机控制类
-      | ^
-bsp/maincpp.cpp(22): warning: In file included from...
-bsp\ch040.h(61): warning: inline variables are a C++17 extension [-Wc++17-extensions]
-   61 | inline ch040_t ch040; // 声明一个全局变量
-      | ^
-5 warnings and 3 errors generated.
-compiling maincpp.cpp...
 bsp/planner.cpp(1): warning: In file included from...
 bsp\planner.h(3): warning: In file included from...
 ./lib\Lib_Math.h(130): error: call to 'abs' is ambiguous
@@ -583,52 +471,26 @@ bsp\planner.h(38): warning: inline variables are a C++17 extension [-Wc++17-exte
    38 | inline Planner_t Planner;
       | ^
 bsp/planner.cpp(2): warning: In file included from...
-bsp\controller.h(70): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   70 |     pid_Increment_template_t<float, float> pid_x = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
-      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/planner.cpp(2): warning: In file included from...
-bsp\controller.h(71): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   71 |     pid_Increment_template_t<float, float> pid_y = pid_Increment_template_t<float, float>({0.3, 1, 0.2, -0.4, 0.4});
-      |                                                    ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/planner.cpp(2): warning: In file included from...
-bsp\controller.h(72): error: no matching constructor for initialization of 'pid_Increment_template_t<float, float>'
-   72 |     pid_Increment_template_t<float, float> pid_yaw = pid_Increment_template_t<float, float>({0.6, 2, 0.2, -0.6, 0.6});
-      |                                                      ^                                      ~~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit copy constructor) not viable: cannot convert initializer list argument to 'const pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(69): note: candidate constructor (the implicit move constructor) not viable: cannot convert initializer list argument to 'pid_Increment_template_t<float, float>'
-   69 | class pid_Increment_template_t : public pid_base_template_t<T, T2>
-      |       ^~~~~~~~~~~~~~~~~~~~~~~~
-./lib\pid_template.h(72): note: candidate constructor not viable: cannot convert initializer list argument to 'PidBaseConfig_T<float, float>'
-   72 |     pid_Increment_template_t(PidBaseConfig_T<T, T2> config) : pid_base_template_t<T, T2>(config) {};
-      |     ^                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bsp/planner.cpp(2): warning: In file included from...
 bsp\controller.h(74): warning: inline variables are a C++17 extension [-Wc++17-extensions]
    74 | inline StepController_t Controller; // 全局控制器实例
       | ^
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-3 warnings and 20 errors generated.
+bsp/planner.cpp(100): error: no member named 'max' in namespace 'std'; did you mean 'fmax'?
+  100 |     _target_t=std::max(_trapezoidal_spline[0].max_t(), _trapezoidal_spline[1].max_t());
+      |               ~~~~~^~~
+      |                    fmax
+D:\keil\core\ARM\ARMCLANG\bin\..\include\math.h(861): note: 'fmax' declared here
+  861 | extern _ARMABI_FPEXCEPT double fmax(double /*x*/, double /*y*/);
+      |                                ^
+bsp/planner.cpp(101): error: no member named 'max' in namespace 'std'; did you mean 'fmax'?
+  101 |     _target_t = std::max(_target_t, _trapezoidal_spline[2].max_t());
+      |                 ~~~~~^~~
+      |                      fmax
+D:\keil\core\ARM\ARMCLANG\bin\..\include\math.h(861): note: 'fmax' declared here
+  861 | extern _ARMABI_FPEXCEPT double fmax(double /*x*/, double /*y*/);
+      |                                ^
+3 warnings and 18 errors generated.
 compiling planner.cpp...
-"Express_courier\Express_courier.axf" - 41 Error(s), 10 Warning(s).
+"Express_courier\Express_courier.axf" - 34 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -652,7 +514,7 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
 Target not created.
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

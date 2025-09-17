@@ -8,7 +8,7 @@
  *
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
  */
-
+__asm(".global __use_no_semihosting");
 #include "maincpp.h"
 #define PI 3.1415926535
 #include "FreeRTOS.h"
@@ -29,7 +29,7 @@ TaskHandle_t Chassic_control_handle; // 底盘更新
 TaskHandle_t main_cpp_handle;        // 主函数
 TaskHandle_t Planner_update_handle;  // 轨迹规划
 USARTInstance StepMotorUart;         // 步进电机串口实例
-USARTInstance ch040Uart;         // ch040串口实例
+USARTInstance ch040Uart;             // ch040串口实例
 void ontest(void *pvParameters);
 void OnChassicControl(void *pvParameters);
 void OnKinematicUpdate(void *pvParameters);
@@ -43,7 +43,8 @@ void ch040CallBack(void *param);
 /*三是基于自身坐标系下的位置闭环*/
 /*一只要一开始给一个控制量*/
 /*二与三需要实时更新*/
-void main_cpp(void) {
+void main_cpp(void)
+{
   // stepmotor_ptr = new StepMotorZDT_t(1, &huart1, true, 1);
   // stepmotor_list_ptr = new LibList_t<StepMotorZDT_t *>();
   USART_Init_Config_s init_config;
@@ -53,7 +54,7 @@ void main_cpp(void) {
   init_config.module_callback =
       StepCallBack; // 这里传入的是静态函数,需要注意参数类型
   USARTRegister(&StepMotorUart, &init_config);
-  init_config.usart_handle=&huart6;
+  init_config.usart_handle = &huart6;
   init_config.recv_buff_size = 100;
   init_config.module_callback = ch040CallBack; // 这里传入的是静态函数,需要注意参数类型
   USARTRegister(&ch040Uart, &init_config);
@@ -63,7 +64,7 @@ void main_cpp(void) {
   stepmotor_list_ptr[3] = new StepMotorZDT_t(3, &huart3, true, 1);
   KinematicOdom = KinematicOdom_t(0.2535);
   // 需要用reinterpret_cast转换到父类指针类型
-  Controller= StepController_t(stepmotor_list_ptr);
+  Controller = StepController_t(stepmotor_list_ptr);
   HostPtr =
       new HostControl_t(&huart4);
   BaseType_t ok2 = xTaskCreate(OnChassicControl, "Chassic_control", 600, NULL,
@@ -73,15 +74,18 @@ void main_cpp(void) {
   BaseType_t ok4 = xTaskCreate(OnPlannerUpdate, "Planner_update", 1000, NULL, 4,
                                &Planner_update_handle);
   //   if (ok != pdPASS || ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
-  if (ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS) {
+  if (ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
+  {
     // 任务创建失败，进入死循环
-    while (1) {
+    while (1)
+    {
       // uart_printf("create task failed\n");
     }
   }
 }
 
-void Onmaincpp(void *pvParameters) {
+void Onmaincpp(void *pvParameters)
+{
   UNUSED(pvParameters);
   // auto& result=ChassisControl_ptr->SetStepGroudPosition({1.2, 0.6, 0.0}, 100, 1.5,true);
   // while(!result.isResolved())
@@ -91,53 +95,63 @@ void Onmaincpp(void *pvParameters) {
   // }
   // // ChassisControl_ptr->SetStepGroudPosition({-0.0,-0.6 , 0.0}, 100, 0.5,true);
   // ChassisControl_ptr->SetStepGroudPosition({-1.2, -0.6, 0.0}, 100, 0.5,true);
-  while (1) {
-    
+  while (1)
+  {
+
     vTaskDelay(1000);
   }
 }
-void ontest(void *pvParameters) {
+void ontest(void *pvParameters)
+{
   UNUSED(pvParameters);
-  while (1) {
+  while (1)
+  {
     Controller.SetVelTarget({DEBUG1, DEBUG2, DEBUG3});
     vTaskDelay(500);
   }
 }
 
-void OnPlannerUpdate(void *pvParameters) {
+void OnPlannerUpdate(void *pvParameters)
+{
   UNUSED(pvParameters);
   uint16_t last_tick = xTaskGetTickCount();
   // Kinematic.init(0.6, 2, 0.2); // 初始化运动学模型
-  while (1) {
+  while (1)
+  {
     uint16_t dt = (xTaskGetTickCount() - last_tick) % portMAX_DELAY;
     last_tick = xTaskGetTickCount();
     Planner.update(dt);
     vTaskDelay(40);
   }
 }
-void OnChassicControl(void *pvParameters) {
+void OnChassicControl(void *pvParameters)
+{
   UNUSED(pvParameters);
   uint16_t last_tick = xTaskGetTickCount();
 
-  while (1) {
+  while (1)
+  {
     uint16_t dt = (xTaskGetTickCount() - last_tick) % portMAX_DELAY;
     last_tick = xTaskGetTickCount();
     // ChassisControl_ptr->KinematicAndControlUpdate(dt, imu.getyaw());
-    Controller.KinematicAndControlUpdate(dt,ch040.getYaw());
+    Controller.KinematicAndControlUpdate(dt, ch040.getYaw());
     // 步进不需要速度环，此处仅为了读取电机速度
     // ChassisControl_ptr->MotorUpdate(dt);
     vTaskDelay(2);
   }
 }
-void StepCallBack(void *param) {
+void StepCallBack(void *param)
+{
   UNUSED(param);
-  for (auto i = 0; i < 4; i++) {
-    if (stepmotor_list_ptr[i] != nullptr) {
+  for (auto i = 0; i < 4; i++)
+  {
+    if (stepmotor_list_ptr[i] != nullptr)
+    {
       stepmotor_list_ptr[i]->UARTCallback(StepMotorUart.recv_buff);
     }
   }
 }
-void ch040CallBack(void *param) 
+void ch040CallBack(void *param)
 {
   ch040.analyze_data(ch040Uart.recv_buff);
 }
