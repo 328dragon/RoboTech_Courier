@@ -29,6 +29,7 @@ TaskHandle_t main_cpp_handle;        // 主函数
 TaskHandle_t Planner_update_handle;  // 轨迹规划
 USARTInstance StepMotorUart;         // 步进电机串口实例
 USARTInstance ch040Uart;             // ch040串口实例
+TaskHandle_t Ontest_handle;
 void ontest(void *pvParameters);
 void OnChassicControl(void *pvParameters);
 void OnKinematicUpdate(void *pvParameters);
@@ -72,6 +73,8 @@ void main_cpp(void)
       xTaskCreate(Onmaincpp, "main_cpp", 600, NULL, 4, &main_cpp_handle);
   BaseType_t ok4 = xTaskCreate(OnPlannerUpdate, "Planner_update", 1000, NULL, 4,
                                &Planner_update_handle);
+		 BaseType_t ok5 = xTaskCreate(ontest, "ontest_work", 200, NULL, 2,
+                               &Ontest_handle);													 
   //   if (ok != pdPASS || ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
   if (ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
   {
