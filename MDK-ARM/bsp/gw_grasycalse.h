@@ -7,6 +7,7 @@
 
 /* 默认地址 */
 #define GW_GRAY_ADDR_DEF 0x4C
+
 //PING命令
 #define GW_GRAY_PING 0xAA
 #define GW_GRAY_PING_OK 0x66

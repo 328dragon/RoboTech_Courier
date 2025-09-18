@@ -32,16 +32,21 @@ StepMotorZDT_t *stepmotor_list_ptr[4];
 TaskHandle_t Chassic_control_handle; // 底盘更新
 TaskHandle_t main_cpp_handle;        // 主函数
 TaskHandle_t Planner_update_handle;  // 轨迹规划
+TaskHandle_t gray_read_handle;        // 灰度传感器
+
 USARTInstance StepMotorUart;         // 步进电机串口实例
 USARTInstance ch040Uart;             // ch040串口实例
-TaskHandle_t Ontest_handle;
-void ontest(void *pvParameters);
+// TaskHandle_t Ontest_handle;
+// void ontest(void *pvParameters);
+GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_left;
+GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_right;
 void OnChassicControl(void *pvParameters);
 void OnKinematicUpdate(void *pvParameters);
 void Onmaincpp(void *pvParameters);
 void OnPlannerUpdate(void *pvParameters);
 void StepCallBack(void *param);
 void ch040CallBack(void *param);
+void gray_read_task(void *pvParameters);
 // 现在有三种控制方法
 /*一是基于自身坐标系下的速度闭环*/
 /*二是基于大地坐标系下的速度闭环*/
@@ -52,6 +57,10 @@ void main_cpp(void)
 {
   // stepmotor_ptr = new StepMotorZDT_t(1, &huart1, true, 1);
   // stepmotor_list_ptr = new LibList_t<StepMotorZDT_t *>();
+//感为灰度
+  Gw_GrayscaleSensor_left = GW_grasycalse::Gw_Grayscale_t(&hi2c3, GW_GRAY_ADDR_DEF);
+	  Gw_GrayscaleSensor_right = GW_grasycalse::Gw_Grayscale_t(&hi2c1, GW_GRAY_ADDR_DEF);
+//串口配置
   USART_Init_Config_s init_config;
 //底盘控制串口
   init_config.recv_buff_size = 50;
@@ -82,8 +91,10 @@ void main_cpp(void)
       xTaskCreate(Onmaincpp, "main_cpp", 600, NULL, 4, &main_cpp_handle);
   BaseType_t ok4 = xTaskCreate(OnPlannerUpdate, "Planner_update", 1000, NULL, 4,
                                &Planner_update_handle);
-		 BaseType_t ok5 = xTaskCreate(ontest, "ontest_work", 200, NULL, 2,
-                               &Ontest_handle);													 
+   BaseType_t ok5 = xTaskCreate(gray_read_task, "gray_read_task", 300, NULL, 2, &gray_read_handle);  
+
+		//  BaseType_t ok10 = xTaskCreate(ontest, "ontest_work", 200, NULL, 2,
+    //                            &Ontest_handle);													 
   //   if (ok != pdPASS || ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
   if (ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
   {
@@ -95,17 +106,32 @@ void main_cpp(void)
   }
 }
 
+void gray_read_task(void *pvParameters)
+{
+  while (Gw_GrayscaleSensor_left.gw_ping()||Gw_GrayscaleSensor_right.gw_ping())
+  {
+    vTaskDelay(100);
+  }
+  while (1)
+  {
+    Gw_GrayscaleSensor_left.read_data();
+		Gw_GrayscaleSensor_right.read_data();
+    vTaskDelay(10);
+  }
+}
+
 void Onmaincpp(void *pvParameters)
 {
-  UNUSED(pvParameters);
-  // auto& result=ChassisControl_ptr->SetStepGroudPosition({1.2, 0.6, 0.0}, 100, 1.5,true);
-  // while(!result.isResolved())
-  // {
-  //   // uart_printf("step ground position control running\n");
-  //   vTaskDelay(10);
-  // }
-  // // ChassisControl_ptr->SetStepGroudPosition({-0.0,-0.6 , 0.0}, 100, 0.5,true);
-  // ChassisControl_ptr->SetStepGroudPosition({-1.2, -0.6, 0.0}, 100, 0.5,true);
+  UNUSED(pvParameters); 
+		vTaskDelay(1000);
+	ch040.setYawZero();
+
+// auto& result=Controller.SetClosePosition({1, 0, 0});
+//   while(!result.isResolved())
+// {
+
+//    vTaskDelay(10);
+//  }
   while (1)
   {
 
@@ -113,15 +139,15 @@ void Onmaincpp(void *pvParameters)
   }
 }
 
-void ontest(void *pvParameters)
-{
-  UNUSED(pvParameters);
-  while (1)
-  {
-    Controller.SetVelTarget({DEBUG1, DEBUG2, DEBUG3});
-    vTaskDelay(500);
-  }
-}
+// void ontest(void *pvParameters)
+// {
+//   UNUSED(pvParameters);
+//   while (1)
+//   {
+//     Controller.SetVelTarget({DEBUG1, DEBUG2, DEBUG3});
+//     vTaskDelay(500);
+//   }
+// }
 
 void OnPlannerUpdate(void *pvParameters)
 {
