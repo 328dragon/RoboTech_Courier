@@ -8,6 +8,10 @@
  *
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
  */
+//2（0）   1（1）
+//
+//3（2）   4（3）
+
 #include "maincpp.h"
 #define PI 3.1415926535
 #include "FreeRTOS.h"
@@ -49,25 +53,29 @@ void main_cpp(void)
   // stepmotor_ptr = new StepMotorZDT_t(1, &huart1, true, 1);
   // stepmotor_list_ptr = new LibList_t<StepMotorZDT_t *>();
   USART_Init_Config_s init_config;
+//底盘控制串口
   init_config.recv_buff_size = 50;
   init_config.usart_handle = &huart3;
   init_config.param = nullptr;
-  init_config.module_callback =
-      StepCallBack; // 这里传入的是静态函数,需要注意参数类型
+  init_config.module_callback = StepCallBack; // 这里传入的是静态函数,需要注意参数类型
   USARTRegister(&StepMotorUart, &init_config);
+//ch040陀螺仪串口
   init_config.usart_handle = &huart6;
   init_config.recv_buff_size = 100;
   init_config.module_callback = ch040CallBack; // 这里传入的是静态函数,需要注意参数类型
   USARTRegister(&ch040Uart, &init_config);
-  stepmotor_list_ptr[0] = new StepMotorZDT_t(1, &huart3, false, 0);
-  stepmotor_list_ptr[1] = new StepMotorZDT_t(2, &huart3, false, 1);
-  stepmotor_list_ptr[2] = new StepMotorZDT_t(4, &huart3, false, 0);
-  stepmotor_list_ptr[3] = new StepMotorZDT_t(3, &huart3, true, 1);
+//电机实例化
+  stepmotor_list_ptr[0] = new StepMotorZDT_t(2, &huart3, false, 0);
+  stepmotor_list_ptr[1] = new StepMotorZDT_t(1, &huart3, false, 1);
+  stepmotor_list_ptr[2] = new StepMotorZDT_t(3, &huart3, false, 0);
+  stepmotor_list_ptr[3] = new StepMotorZDT_t(4, &huart3, true, 1);
   KinematicOdom = KinematicOdom_t(0.2535);
   // 需要用reinterpret_cast转换到父类指针类型
   Controller = StepController_t(stepmotor_list_ptr);
+  //上位机控制
   HostPtr =
       new HostControl_t(&huart4);
+  //任务开启
   BaseType_t ok2 = xTaskCreate(OnChassicControl, "Chassic_control", 600, NULL,
                                3, &Chassic_control_handle);
   BaseType_t ok3 =
@@ -104,6 +112,7 @@ void Onmaincpp(void *pvParameters)
     vTaskDelay(1000);
   }
 }
+
 void ontest(void *pvParameters)
 {
   UNUSED(pvParameters);
