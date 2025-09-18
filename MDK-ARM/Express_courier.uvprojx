@@ -804,6 +804,11 @@
               <FileType>8</FileType>
               <FilePath>.\bsp\gw_grasycalse.cpp</FilePath>
             </File>
+            <File>
+              <FileName>com_grasycalse.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\bsp\com_grasycalse.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

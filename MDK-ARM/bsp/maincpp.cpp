@@ -24,6 +24,7 @@
 #include "task.h"
 #include "ch040.h"
 #include "gw_grasycalse.h"
+#include "com_grasycalse.h"
 float DEBUG1 = 0.0f;
 float DEBUG2 = 0.0f;
 float DEBUG3 = 0.0f;
@@ -40,6 +41,7 @@ USARTInstance ch040Uart;             // ch040串口实例
 // void ontest(void *pvParameters);
 GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_left;
 GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_right;
+Com_Grayscale_t front_GrayscaleSensor;
 void OnChassicControl(void *pvParameters);
 void OnKinematicUpdate(void *pvParameters);
 void Onmaincpp(void *pvParameters);
@@ -60,6 +62,8 @@ void main_cpp(void)
 //感为灰度
   Gw_GrayscaleSensor_left = GW_grasycalse::Gw_Grayscale_t(&hi2c3, GW_GRAY_ADDR_DEF);
 	  Gw_GrayscaleSensor_right = GW_grasycalse::Gw_Grayscale_t(&hi2c1, GW_GRAY_ADDR_DEF);
+     front_GrayscaleSensor = Com_Grayscale_t({{GPIOE, GPIOC, GPIOE, GPIOE},
+                           {GPIO_PIN_10, GPIO_PIN_5, GPIO_PIN_12, GPIO_PIN_7}});
 //串口配置
   USART_Init_Config_s init_config;
 //底盘控制串口
@@ -116,6 +120,7 @@ void gray_read_task(void *pvParameters)
   {
     Gw_GrayscaleSensor_left.read_data();
 		Gw_GrayscaleSensor_right.read_data();
+		front_GrayscaleSensor.read_data();
     vTaskDelay(10);
   }
 }

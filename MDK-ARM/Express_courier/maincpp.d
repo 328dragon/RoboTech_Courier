@@ -39,4 +39,5 @@ express_courier/maincpp.o: bsp\maincpp.cpp bsp\maincpp.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
   bsp\Kinematic.h bsp\bsp_usart.h bsp\controller.h lib\Lib_Common.h \
   bsp\stepmotorZDT.hpp lib\pid_template.h bsp\host_control.hpp \
-  bsp\planner.h lib\Lib_Math.h bsp\ch040.h bsp\gw_grasycalse.h
+  bsp\planner.h lib\Lib_Math.h bsp\ch040.h bsp\gw_grasycalse.h \
+  bsp\com_grasycalse.h
