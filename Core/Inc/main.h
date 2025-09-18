@@ -42,6 +42,8 @@ extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart6;
 	extern I2C_HandleTypeDef hi2c1;
 	extern I2C_HandleTypeDef hi2c3;
+extern	TIM_HandleTypeDef htim14;
+	extern	TIM_HandleTypeDef htim13;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

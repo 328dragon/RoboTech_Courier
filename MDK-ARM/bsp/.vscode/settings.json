@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "hc_sr04.h": "c",
+        "soft_pwm.h": "c",
+        "bsp_usart.h": "c",
+        "stdint.h": "c"
+    }
+}
