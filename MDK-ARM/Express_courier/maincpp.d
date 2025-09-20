@@ -36,8 +36,10 @@ express_courier/maincpp.o: bsp\maincpp.cpp bsp\maincpp.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_i2c_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
   bsp\Kinematic.h bsp\bsp_usart.h bsp\controller.h lib\Lib_Common.h \
   bsp\stepmotorZDT.hpp lib\pid_template.h bsp\host_control.hpp \
   bsp\planner.h lib\Lib_Math.h bsp\ch040.h bsp\gw_grasycalse.h \
-  bsp\com_grasycalse.h
+  bsp\com_grasycalse.h bsp\SR04.h ..\Core\Inc\tim.h

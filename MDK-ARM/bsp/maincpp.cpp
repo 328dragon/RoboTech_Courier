@@ -25,6 +25,11 @@
 #include "ch040.h"
 #include "gw_grasycalse.h"
 #include "com_grasycalse.h"
+extern"C"
+{
+#include "SR04.h"
+}
+
 float DEBUG1 = 0.0f;
 float DEBUG2 = 0.0f;
 float DEBUG3 = 0.0f;
@@ -139,7 +144,8 @@ void Onmaincpp(void *pvParameters)
 //  }
   while (1)
   {
-
+	
+		SR04_GetData();
     vTaskDelay(1000);
   }
 }

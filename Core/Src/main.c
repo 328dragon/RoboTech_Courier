@@ -21,12 +21,14 @@
 #include "cmsis_os.h"
 #include "dma.h"
 #include "i2c.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "maincpp.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -97,6 +99,7 @@ int main(void)
   MX_UART4_Init();
   MX_I2C1_Init();
   MX_I2C3_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   main_cpp();
   /* USER CODE END 2 */
@@ -116,6 +119,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+//		SR04_GetData(  );
+//      HAL_Delay(1500);
+
   }
   /* USER CODE END 3 */
 }
