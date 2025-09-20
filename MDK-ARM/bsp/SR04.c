@@ -20,7 +20,7 @@ void SR04_Elapsed_callback(SR04_t *_SR04)
 	case 1:
 	{
 		HAL_GPIO_WritePin(_SR04->Ttig_Port, _SR04->Trig_Pin, 1);
-			_SR04->measure_Cnt += delay_no_conflict(&_SR04->delay_temp_count, 3); // 延时30us
+		_SR04->measure_Cnt += delay_no_conflict(&_SR04->delay_temp_count, 3); // 延时30us，这因为是用的10us定时器TIM10，所以这用30/10=3
 		break;
 	}
 	case 2:
@@ -44,7 +44,7 @@ __HAL_TIM_SET_COUNTER(_SR04->Echo_htim,0);
 		break;
 	}
 }
-void SR04_Echo_IC_callback(SR04_t *_SR04)
+void SR04_Echo_IC_callback(SR04_t *_SR04)//注意他的对应定时器只需要将他的定时器分频器=对应M数-1如现在TIM1是168M	hz,则Prescaler=168-1,ARR不变
 {
 		switch(_SR04->measure_Cnt){
 			case 3:
