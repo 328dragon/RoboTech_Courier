@@ -13,10 +13,10 @@ typedef struct HC_SR04
     uint16_t Echo_pin;
     uint64_t time;
     uint64_t time_end;
-	int shit_flag;
-	  int enable_flag;
-	int finish_flag;
-	int round;
+__IO	int shit_flag;
+__IO	  int enable_flag;
+__IO	int finish_flag;
+__IO	int round;
 } HC_SR04_t;
 
 void HC_SR04_IRQ(HC_SR04_t * _hc_sr04);

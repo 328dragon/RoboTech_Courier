@@ -145,7 +145,6 @@ void Onmaincpp(void *pvParameters)
   while (1)
   {
 
-    vTaskDelay(1000);
   }
 }
 
