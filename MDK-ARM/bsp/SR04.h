@@ -5,13 +5,7 @@
 #include "stdio.h"
 #include "stm32f4xx_hal_tim.h"
 
-// 原版,带delay_us抽象写法
-// #define TRIG_H HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 1)
-// #define TRIG_L HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 0)
-
-// void delay_us(uint32_t us);
-// void SR04_GetData(void);
-// 新版,利用顺序状态，和定时器计算
+//利用顺序状态，和定时器计算
 typedef struct SR04_Struct
 {
     GPIO_TypeDef *Ttig_Port;       // 触发端口
