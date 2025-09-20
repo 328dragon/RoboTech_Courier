@@ -36,6 +36,7 @@
 "express_courier\stepmotorzdt.o"
 "express_courier\gw_grasycalse.o"
 "express_courier\sr04.o"
+"express_courier\bsp_tim_control.o"
 "express_courier\lib_common.o"
 "express_courier\lib_math.o"
 "express_courier\croutine.o"

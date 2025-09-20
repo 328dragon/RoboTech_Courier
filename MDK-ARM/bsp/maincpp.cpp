@@ -25,10 +25,10 @@
 #include "ch040.h"
 #include "gw_grasycalse.h"
 #include "com_grasycalse.h"
-extern"C"
-{
-#include "SR04.h"
-}
+ extern"C"
+ {
+ #include "SR04.h"
+ }
 
 float DEBUG1 = 0.0f;
 float DEBUG2 = 0.0f;
@@ -47,6 +47,7 @@ USARTInstance ch040Uart;             // ch040串口实例
 GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_left;
 GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_right;
 Com_Grayscale_t front_GrayscaleSensor;
+SR04_t SR04_front;
 void OnChassicControl(void *pvParameters);
 void OnKinematicUpdate(void *pvParameters);
 void Onmaincpp(void *pvParameters);
@@ -69,6 +70,9 @@ void main_cpp(void)
 	  Gw_GrayscaleSensor_right = GW_grasycalse::Gw_Grayscale_t(&hi2c1, GW_GRAY_ADDR_DEF);
      front_GrayscaleSensor = Com_Grayscale_t({{GPIOE, GPIOC, GPIOE, GPIOE},
                            {GPIO_PIN_10, GPIO_PIN_5, GPIO_PIN_12, GPIO_PIN_7}});
+//超声波
+	HAL_TIM_Base_Start_IT(&htim10);												 
+  SR04_Register(&SR04_front, GPIOE, GPIO_PIN_9, &htim1, TIM_CHANNEL_4);
 //串口配置
   USART_Init_Config_s init_config;
 //底盘控制串口
@@ -144,9 +148,9 @@ void Onmaincpp(void *pvParameters)
 //  }
   while (1)
   {
-	
-		SR04_GetData();
-    vTaskDelay(1000);
+ SR04_GetData(&SR04_front);
+		// SR04_GetData();
+    vTaskDelay(1500);
   }
 }
 

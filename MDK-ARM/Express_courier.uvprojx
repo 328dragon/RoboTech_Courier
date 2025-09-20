@@ -982,6 +982,11 @@
               <FileType>1</FileType>
               <FilePath>.\bsp\SR04.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_tim_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bsp\bsp_tim_control.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

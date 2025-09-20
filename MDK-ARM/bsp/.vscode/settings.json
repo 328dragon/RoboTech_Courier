@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "sr04.h": "c",
+        "bsp_tim_control.h": "c"
+    }
+}

@@ -27,12 +27,33 @@ Project File Date:  09/20/2025
 <h2>Output:</h2>
 *** Using Compiler 'V6.22', folder: 'D:\keil\core\ARM\ARMCLANG\Bin'
 Build target 'Express_courier'
-assembling startup_stm32f407xx.s...
-compiling tim.c...
+bsp/maincpp.cpp(18): warning: In file included from...
+bsp\Kinematic.h(76): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   76 | inline KinematicOdom_t KinematicOdom;
+      | ^
+bsp/maincpp.cpp(20): warning: In file included from...
+bsp\controller.h(74): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   74 | inline StepController_t Controller; // 全局控制器实例
+      | ^
+bsp/maincpp.cpp(21): warning: In file included from...
+bsp\host_control.hpp(18): warning: In file included from...
+bsp\planner.h(38): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   38 | inline Planner_t Planner;
+      | ^
+bsp/maincpp.cpp(21): warning: In file included from...
+bsp\host_control.hpp(128): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+  128 | inline HostControl_t * HostPtr = nullptr; // 全局指针,用于访问上位机控制类
+      | ^
+bsp/maincpp.cpp(25): warning: In file included from...
+bsp\ch040.h(61): warning: inline variables are a C++17 extension [-Wc++17-extensions]
+   61 | inline ch040_t ch040; // 声明一个全局变量
+      | ^
+5 warnings generated.
+compiling maincpp.cpp...
 linking...
-Program Size: Code=54424 RO-data=900 RW-data=16 ZI-data=28840  
+Program Size: Code=55360 RO-data=900 RW-data=16 ZI-data=28928  
 FromELF: creating hex file...
-"Express_courier\Express_courier.axf" - 0 Error(s), 0 Warning(s).
+"Express_courier\Express_courier.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -55,7 +76,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE@6.1.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
