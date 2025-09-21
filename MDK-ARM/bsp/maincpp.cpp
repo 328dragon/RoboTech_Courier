@@ -28,6 +28,7 @@
  extern"C"
  {
  #include "SR04.h"
+ #include "upper.h"
  }
 
 float DEBUG1 = 0.0f;
@@ -39,7 +40,7 @@ TaskHandle_t Chassic_control_handle; // 底盘更新
 TaskHandle_t main_cpp_handle;        // 主函数
 TaskHandle_t Planner_update_handle;  // 轨迹规划
 TaskHandle_t gray_read_handle;        // 灰度传感器
-
+TaskHandle_t upper_move_handle;      // 上层机构                
 USARTInstance StepMotorUart;         // 步进电机串口实例
 USARTInstance ch040Uart;             // ch040串口实例
 // TaskHandle_t Ontest_handle;
@@ -48,6 +49,11 @@ GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_left;
 GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_right;
 Com_Grayscale_t front_GrayscaleSensor;
 SR04_t SR04_front;
+//上升电机
+upper_location now_upper_loacation = up_location;
+upper_location target_upper_loacation = up_location;
+int upper_flag=0;
+
 void OnChassicControl(void *pvParameters);
 void OnKinematicUpdate(void *pvParameters);
 void Onmaincpp(void *pvParameters);
@@ -55,6 +61,7 @@ void OnPlannerUpdate(void *pvParameters);
 void StepCallBack(void *param);
 void ch040CallBack(void *param);
 void gray_read_task(void *pvParameters);
+void upper_move_task(void *pvParameters);
 // 现在有三种控制方法
 /*一是基于自身坐标系下的速度闭环*/
 /*二是基于大地坐标系下的速度闭环*/
@@ -105,7 +112,7 @@ void main_cpp(void)
   BaseType_t ok4 = xTaskCreate(OnPlannerUpdate, "Planner_update", 1000, NULL, 4,
                                &Planner_update_handle);
    BaseType_t ok5 = xTaskCreate(gray_read_task, "gray_read_task", 300, NULL, 2, &gray_read_handle);  
-
+    BaseType_t ok6 = xTaskCreate(upper_move_task, "upper_move_distance", 100, NULL, 2, &upper_move_handle);
 		//  BaseType_t ok10 = xTaskCreate(ontest, "ontest_work", 200, NULL, 2,
     //                            &Ontest_handle);													 
   //   if (ok != pdPASS || ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
@@ -117,6 +124,22 @@ void main_cpp(void)
       // uart_printf("create task failed\n");
     }
   }
+}
+
+void upper_move_task(void *pvParameters)
+{
+while (1)
+{
+ upper_to_target(target_upper_loacation);
+//	if(upper_flag)
+//	{
+//		upper_move_distance(5, 1, 600, 0.2,6000, 0, 0); // 上升到最高位置
+//		upper_flag=0;
+//	}
+
+
+ vTaskDelay(100);
+}
 }
 
 void gray_read_task(void *pvParameters)

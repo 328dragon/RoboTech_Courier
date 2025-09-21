@@ -987,6 +987,11 @@
               <FileType>1</FileType>
               <FilePath>.\bsp\bsp_tim_control.c</FilePath>
             </File>
+            <File>
+              <FileName>upper.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bsp\upper.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
