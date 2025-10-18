@@ -992,6 +992,11 @@
               <FileType>1</FileType>
               <FilePath>.\bsp\upper.c</FilePath>
             </File>
+            <File>
+              <FileName>logic.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\bsp\logic.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

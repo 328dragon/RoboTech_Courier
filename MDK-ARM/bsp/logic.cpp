@@ -46,7 +46,7 @@ bool Maze::detect_obstacle()
 /*
     极其重要的避障函数，在每次转向后都需要执行一次
 */
-void Maze::update_next_dir() 
+bool Maze::update_next_dir() 
 {
     bool found_obstacle = detect_obstacle(); // 探测障碍物,首先看当前方向前一格是否有障碍物
     //然后看当前是否在边界,如果在边界则禁止出界方向
@@ -72,7 +72,7 @@ void Maze::update_next_dir()
     {
         if(_be_block) // 如果之前是堵车状态，说明现在已经通了
         {
-            _be_block_time = 0; // 堵车次数清零
+            _be_block_time = -1; // 堵车次数清零
         }
         if(!_be_block)
         {
@@ -86,8 +86,9 @@ void Maze::update_next_dir()
             }
         }
         _be_block = false; // 堵车状态
+        return false; 
     }
-    if(found_obstacle)
+    else if(found_obstacle)
     {
         _be_block = true; // 堵车状态
         _be_block_time++;
@@ -100,7 +101,9 @@ void Maze::update_next_dir()
                 break;
             }
         }
+        return true; 
     }
+		return false;
 }
 /*
     逻辑顺序为，每次运动一步，在运动前首先探测障碍物，刷新要走的方向，并转向，然后走一步，然后更新当前位置，循环往复

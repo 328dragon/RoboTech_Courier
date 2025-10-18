@@ -8,9 +8,9 @@
  *
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
  */
-//2（0）   1（1）
+// 2（0）   1（1）
 //
-//3（2）   4（3）
+// 3（2）   4（3）
 
 #include "maincpp.h"
 #define PI 3.1415926535
@@ -25,34 +25,39 @@
 #include "ch040.h"
 #include "gw_grasycalse.h"
 #include "com_grasycalse.h"
- extern"C"
- {
- #include "SR04.h"
- #include "upper.h"
- }
-
+#include "logic.h"
+#define code_mode 0
+extern "C"
+{
+#include "SR04.h"
+#include "upper.h"
+}
+Maze map_left_down = Maze(0, 25);
 float DEBUG1 = 0.0f;
 float DEBUG2 = 0.0f;
 float DEBUG3 = 0.0f;
+
+ float tar_rad=0;
+	 float last_rad=0;
 // 实例化Map并将初始点设置成startInfo
 StepMotorZDT_t *stepmotor_list_ptr[4];
 TaskHandle_t Chassic_control_handle; // 底盘更新
 TaskHandle_t main_cpp_handle;        // 主函数
 TaskHandle_t Planner_update_handle;  // 轨迹规划
-TaskHandle_t gray_read_handle;        // 灰度传感器
-TaskHandle_t upper_move_handle;      // 上层机构                
+TaskHandle_t gray_read_handle;       // 灰度传感器
+TaskHandle_t upper_move_handle;      // 上层机构
 USARTInstance StepMotorUart;         // 步进电机串口实例
 USARTInstance ch040Uart;             // ch040串口实例
 // TaskHandle_t Ontest_handle;
 // void ontest(void *pvParameters);
-GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_left;
-GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_right;
-Com_Grayscale_t front_GrayscaleSensor;
+GW_grasycalse::Gw_Grayscale_t Gw_GrayscaleSensor_front;
+
 SR04_t SR04_front;
-//上升电机
+
+// 上升电机
 upper_location now_upper_loacation = up_location;
 upper_location target_upper_loacation = up_location;
-int upper_flag=0;
+int upper_flag = 0;
 
 void OnChassicControl(void *pvParameters);
 void OnKinematicUpdate(void *pvParameters);
@@ -70,30 +75,29 @@ void upper_move_task(void *pvParameters);
 /*二与三需要实时更新*/
 void main_cpp(void)
 {
-  // stepmotor_ptr = new StepMotorZDT_t(1, &huart1, true, 1);
-  // stepmotor_list_ptr = new LibList_t<StepMotorZDT_t *>();
-//感为灰度
-  Gw_GrayscaleSensor_left = GW_grasycalse::Gw_Grayscale_t(&hi2c3, GW_GRAY_ADDR_DEF);
-	  Gw_GrayscaleSensor_right = GW_grasycalse::Gw_Grayscale_t(&hi2c1, GW_GRAY_ADDR_DEF);
-     front_GrayscaleSensor = Com_Grayscale_t({{GPIOE, GPIOC, GPIOE, GPIOE},
-                           {GPIO_PIN_10, GPIO_PIN_5, GPIO_PIN_12, GPIO_PIN_7}});
-//超声波
-	HAL_TIM_Base_Start_IT(&htim10);												 
+
+
+  // 感为灰度
+  Gw_GrayscaleSensor_front = GW_grasycalse::Gw_Grayscale_t(&hi2c3, GW_GRAY_ADDR_DEF);
+
+
+  // 超声波
+  HAL_TIM_Base_Start_IT(&htim10);
   SR04_Register(&SR04_front, GPIOE, GPIO_PIN_9, &htim1, TIM_CHANNEL_4);
-//串口配置
+  // 串口配置
   USART_Init_Config_s init_config;
-//底盘控制串口
+  // 底盘控制串口
   init_config.recv_buff_size = 50;
   init_config.usart_handle = &huart3;
   init_config.param = nullptr;
   init_config.module_callback = StepCallBack; // 这里传入的是静态函数,需要注意参数类型
   USARTRegister(&StepMotorUart, &init_config);
-//ch040陀螺仪串口
+  // ch040陀螺仪串口
   init_config.usart_handle = &huart6;
   init_config.recv_buff_size = 100;
   init_config.module_callback = ch040CallBack; // 这里传入的是静态函数,需要注意参数类型
   USARTRegister(&ch040Uart, &init_config);
-//电机实例化
+  // 电机实例化
   stepmotor_list_ptr[0] = new StepMotorZDT_t(2, &huart3, false, 0);
   stepmotor_list_ptr[1] = new StepMotorZDT_t(1, &huart3, false, 1);
   stepmotor_list_ptr[2] = new StepMotorZDT_t(3, &huart3, false, 0);
@@ -101,20 +105,20 @@ void main_cpp(void)
   KinematicOdom = KinematicOdom_t(0.2535);
   // 需要用reinterpret_cast转换到父类指针类型
   Controller = StepController_t(stepmotor_list_ptr);
-  //上位机控制
+  // 上位机控制
   HostPtr =
       new HostControl_t(&huart4);
-  //任务开启
+  // 任务开启
   BaseType_t ok2 = xTaskCreate(OnChassicControl, "Chassic_control", 600, NULL,
                                3, &Chassic_control_handle);
   BaseType_t ok3 =
-      xTaskCreate(Onmaincpp, "main_cpp", 600, NULL, 4, &main_cpp_handle);
+      xTaskCreate(Onmaincpp, "main_cpp", 800, NULL, 4, &main_cpp_handle);
   BaseType_t ok4 = xTaskCreate(OnPlannerUpdate, "Planner_update", 1000, NULL, 4,
                                &Planner_update_handle);
-   BaseType_t ok5 = xTaskCreate(gray_read_task, "gray_read_task", 300, NULL, 2, &gray_read_handle);  
-    BaseType_t ok6 = xTaskCreate(upper_move_task, "upper_move_distance", 100, NULL, 2, &upper_move_handle);
-		//  BaseType_t ok10 = xTaskCreate(ontest, "ontest_work", 200, NULL, 2,
-    //                            &Ontest_handle);													 
+  BaseType_t ok5 = xTaskCreate(gray_read_task, "gray_read_task", 300, NULL, 2, &gray_read_handle);
+  BaseType_t ok6 = xTaskCreate(upper_move_task, "upper_move_distance", 100, NULL, 2, &upper_move_handle);
+  //  BaseType_t ok10 = xTaskCreate(ontest, "ontest_work", 200, NULL, 2,
+  //                            &Ontest_handle);
   //   if (ok != pdPASS || ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
   if (ok2 != pdPASS || ok3 != pdPASS || ok4 != pdPASS)
   {
@@ -128,70 +132,244 @@ void main_cpp(void)
 
 void upper_move_task(void *pvParameters)
 {
-while (1)
-{
- upper_to_target(target_upper_loacation);
-//	if(upper_flag)
-//	{
-//		upper_move_distance(5, 1, 600, 0.2,6000, 0, 0); // 上升到最高位置
-//		upper_flag=0;
-//	}
-
-
- vTaskDelay(100);
-}
+  while (1)
+  {
+    upper_to_target(target_upper_loacation);
+		    SR04_GetData(&SR04_front);
+    map_left_down._current_distance = SR04_front.distant;
+    vTaskDelay(100);
+  }
 }
 
 void gray_read_task(void *pvParameters)
 {
-  while (Gw_GrayscaleSensor_left.gw_ping()||Gw_GrayscaleSensor_right.gw_ping())
+  while (Gw_GrayscaleSensor_front.gw_ping() )
   {
     vTaskDelay(100);
   }
   while (1)
   {
-    Gw_GrayscaleSensor_left.read_data();
-		Gw_GrayscaleSensor_right.read_data();
-		front_GrayscaleSensor.read_data();
+   Gw_GrayscaleSensor_front.read_data();
+
     vTaskDelay(10);
   }
 }
 
+float target_rad(Maze &maze)
+{
+  if (maze._current_dir == UP)
+    return 0;
+  else if (maze._current_dir == RIGHT)
+    return -PI / 2;
+  else if (maze._current_dir == DOWN)
+    return PI;
+  else if (maze._current_dir == LEFT)
+    return PI / 2;
+	return 0;
+}
+
+ void move_to_next_block()
+{
+		last_rad=tar_rad;
+  while (map_left_down.update_next_dir())
+  {
+	 tar_rad=target_rad(map_left_down);
+    // 只管转向
+		 auto &turn_move  = Planner.LoactaionCloseControl({0, 0, tar_rad-last_rad}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+    while (turn_move.isResolved() == false)
+    {
+			
+      vTaskDelay(50);
+    }
+	
+    vTaskDelay(200);
+  }
+	
+  map_left_down.update_self_position(); // 刷地图
+
+
+		 while (Gw_GrayscaleSensor_front.IsCurrentMode(GW_grasycalse::GrasyOnLine)==0)
+  {
+    // 沿线前进
+    Controller.SetVelTarget({0.13, Gw_GrayscaleSensor_front.ReturnXControl(), 0});
+    vTaskDelay(50);
+  }
+ Controller.SetVelTarget({0, 0, 0});
+  Controller.Clear();
+  vTaskDelay(50);
+	auto &straight_move= Planner.LoactaionCloseControl({0.16,0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+
+KinematicOdom.CurrentOdom.x=0;
+KinematicOdom.CurrentOdom.y=0;
+	   vTaskDelay(50);
+}
+
 void Onmaincpp(void *pvParameters)
 {
-  UNUSED(pvParameters); 
-		vTaskDelay(1000);
-	ch040.setYawZero();
+  UNUSED(pvParameters);
+  vTaskDelay(1000);
+  ch040.setYawZero();
+	#if code_mode==1
+	//第一个轮回
+  while (Gw_GrayscaleSensor_front.IsCurrentMode(GW_grasycalse::GrasyOnLine)==0)
+  {
+    // 沿线前进
+    Controller.SetVelTarget({0.13, Gw_GrayscaleSensor_front.ReturnXControl(), 0});
+    vTaskDelay(50);
+  }
+ Controller.SetVelTarget({0, 0, 0});
+  vTaskDelay(50);
 
-// auto& result=Controller.SetClosePosition({1, 0, 0});
-//   while(!result.isResolved())
-// {
+  auto &straight_move = Planner.LoactaionCloseControl({0.26, 0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+KinematicOdom.CurrentOdom.x=0;
+	KinematicOdom.CurrentOdom.y=0;
+	   vTaskDelay(50);
+	 //带角度
+	   straight_move = Planner.LoactaionCloseControl({0, 0, PI/2}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+//Controller.Clear();
+	 vTaskDelay(50);
+	///下一个轮回
+  while (Gw_GrayscaleSensor_front.IsCurrentMode(GW_grasycalse::GrasyOnLine)==0)
+  {
+    // 沿线前进
+    Controller.SetVelTarget({0.13, Gw_GrayscaleSensor_front.ReturnXControl(), 0});
+    vTaskDelay(50);
+  }
+ Controller.SetVelTarget({0, 0, 0});
+  Controller.Clear();
+  vTaskDelay(50);
+ 
+ 
 
-//    vTaskDelay(10);
-//  }
+straight_move = Planner.LoactaionCloseControl({0.16,0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+
+KinematicOdom.CurrentOdom.x=0;
+	KinematicOdom.CurrentOdom.y=0;
+	   vTaskDelay(50);
+	 //带角度
+	   straight_move = Planner.LoactaionCloseControl({0, 0,-PI/2}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+	
+//Controller.Clear();
+	 vTaskDelay(50);
+	
+//第三个轮回
+	 while (Gw_GrayscaleSensor_front.IsCurrentMode(GW_grasycalse::GrasyOnLine)==0)
+  {
+    // 沿线前进
+    Controller.SetVelTarget({0.13, Gw_GrayscaleSensor_front.ReturnXControl(), 0});
+    vTaskDelay(50);
+  }
+ Controller.SetVelTarget({0, 0, 0});
+  Controller.Clear();
+  vTaskDelay(50);
+straight_move = Planner.LoactaionCloseControl({0.16,0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+
+KinematicOdom.CurrentOdom.x=0;
+	KinematicOdom.CurrentOdom.y=0;
+	   vTaskDelay(50);
+	 //带角度
+	   straight_move = Planner.LoactaionCloseControl({0, 0,-PI/2}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+	//Controller.Clear();
+	 vTaskDelay(50);
+//第四个轮回
+	 while (Gw_GrayscaleSensor_front.IsCurrentMode(GW_grasycalse::GrasyOnLine)==0)
+  {
+    // 沿线前进
+    Controller.SetVelTarget({0.13, Gw_GrayscaleSensor_front.ReturnXControl(), 0});
+    vTaskDelay(50);
+  }
+ Controller.SetVelTarget({0, 0, 0});
+  Controller.Clear();
+  vTaskDelay(50);
+straight_move = Planner.LoactaionCloseControl({0.16,0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+
+KinematicOdom.CurrentOdom.x=0;
+	KinematicOdom.CurrentOdom.y=0;
+	   vTaskDelay(50);
+	 //带角度
+	   straight_move = Planner.LoactaionCloseControl({0, 0,-PI/2}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+	//Controller.Clear();
+	 vTaskDelay(50);	
+//第五个轮回	
+		 while (Gw_GrayscaleSensor_front.IsCurrentMode(GW_grasycalse::GrasyOnLine)==0)
+  {
+    // 沿线前进
+    Controller.SetVelTarget({0.13, Gw_GrayscaleSensor_front.ReturnXControl(), 0});
+    vTaskDelay(50);
+  }
+ Controller.SetVelTarget({0, 0, 0});
+  Controller.Clear();
+  vTaskDelay(50);
+straight_move = Planner.LoactaionCloseControl({0.16,0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+
+KinematicOdom.CurrentOdom.x=0;
+	KinematicOdom.CurrentOdom.y=0;
+	   vTaskDelay(50);
+	 //带角度
+	   straight_move = Planner.LoactaionCloseControl({0, 0,PI}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }
+	//Controller.Clear();
+	 vTaskDelay(50);	
+	#endif
   while (1)
   {
- SR04_GetData(&SR04_front);
-		// SR04_GetData();
-    vTaskDelay(1500);
+		#if code_mode==0
+move_to_next_block();
+#endif
+    vTaskDelay(20);
   }
 }
 
-// void ontest(void *pvParameters)
-// {
-//   UNUSED(pvParameters);
-//   while (1)
-//   {
-//     Controller.SetVelTarget({DEBUG1, DEBUG2, DEBUG3});
-//     vTaskDelay(500);
-//   }
-// }
+
 
 void OnPlannerUpdate(void *pvParameters)
 {
   UNUSED(pvParameters);
   uint16_t last_tick = xTaskGetTickCount();
-  // Kinematic.init(0.6, 2, 0.2); // 初始化运动学模型
+ 
   while (1)
   {
     uint16_t dt = (xTaskGetTickCount() - last_tick) % portMAX_DELAY;
@@ -231,7 +409,6 @@ void ch040CallBack(void *param)
 {
   ch040.analyze_data(ch040Uart.recv_buff);
 }
-
 
 // .............................................'RW#####EEEEEEEEEEEEEEEEEEEEEEEEWW%%%%%%N%%%%%%NW"...........
 // ............................................/W%E$$$$EEEE######EEEEEEEEEEEEEEEE%%@NN@@$@@N%%%%N%]~`........

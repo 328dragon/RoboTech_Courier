@@ -23,6 +23,7 @@ enum Com_GrayscaleMode_t
     GrasyCross,
     GrasyOnLine,
     OutLine,
+	all_black,
 };
 class Com_Grayscale_t
 {
@@ -52,10 +53,11 @@ public:
         read_data();
         float error = 0;
 
-        error -= data[2]*1;
-        error += data[3]*1;
-
-        control = -pidx.update(error);
+			  error -= data[0]*0.3;	
+        error -= data[1]*0.1;
+        error += data[2]*0.1;
+				error += data[3]*0.3;
+        control = pidx.update(error);
         return control;
     }
     float ReturnCotorl(void)
@@ -83,6 +85,11 @@ public:
         case OutLine:
             return data[1] && data[2] && data[3];
             break;
+				case all_black:
+				{
+				return !(data[0] &&data[1] && data[2] && data[3]);
+					  break;
+				}
         default:
             return false;
             break;

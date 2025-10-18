@@ -42,4 +42,5 @@ express_courier/maincpp.o: bsp\maincpp.cpp bsp\maincpp.h \
   bsp\Kinematic.h bsp\bsp_usart.h bsp\controller.h lib\Lib_Common.h \
   bsp\stepmotorZDT.hpp lib\pid_template.h bsp\host_control.hpp \
   bsp\planner.h lib\Lib_Math.h bsp\ch040.h bsp\gw_grasycalse.h \
-  bsp\com_grasycalse.h bsp\SR04.h ..\Core\Inc\tim.h bsp\upper.h
+  bsp\com_grasycalse.h bsp\logic.h bsp\SR04.h ..\Core\Inc\tim.h \
+  bsp\upper.h

@@ -7,7 +7,6 @@
 
 /* 默认地址 */
 #define GW_GRAY_ADDR_DEF 0x4C
-
 //PING命令
 #define GW_GRAY_PING 0xAA
 #define GW_GRAY_PING_OK 0x66
@@ -48,19 +47,19 @@ public:
         pid.target_update(0);
     }
     unsigned char gw_ping(void );
-    void read_data(void);//灰度读值
+    void read_data(void);
     float ReturnXControl(void)
     {
         float error = 0;
 
-			      error -= data[0] * 9;
-        error -= data[1] * 5;
-        error -= data[2]*3;
+			      error -= data[0] * 4;
+        error -= data[1] * 3;
+        error -= data[2]*2;
         error -= data[3]*1;
         error += data[4] * 1;
-        error += data[5] * 3;
-			 error += data[6] * 5;
-			 error += data[7] * 9;
+        error += data[5] * 2;
+			 error += data[6] * 3;
+			 error += data[7] * 4;
         control = pidx.update(error);
         return control;
     }
@@ -82,10 +81,10 @@ public:
         switch (mode)
         {
         case GrasyCross:
-            return data[2] && data[3] && data[4] && data[5];
+            return (data[1]&&data[2] && data[3]) ||(data[4] && data[5]&&data[6]);
             break;
         case GrasyOnLine:
-            return data[3] || data[4];
+            return  (data[0]&&data[1] && data[2]) ||( data[5]&&data[6]&&data[7]);
             break;
         case OutLine://全白线返回0，其他全返回1
             return data[1] || data[2]|| data[3]|| data[4] || (data[5]||data[0])||data[6]||data[7];
@@ -101,7 +100,7 @@ protected:
     uint8_t data[8];//有八个光电管，左0右8
 	I2C_HandleTypeDef * I2C_handle;
     pid_base_template_t<float,float> pid = pid_base_template_t<float,float>({0.1, 0, 0.1, -3, 3});
-    pid_base_template_t<float,float> pidx = pid_base_template_t<float,float>({0.025, 0, 0.01, -0.3, 0.3});
+    pid_base_template_t<float,float> pidx = pid_base_template_t<float,float>({0.010, 0, 0.01, -0.3, 0.3});
 private:
 unsigned char Salve_Adress;
 unsigned char Digital_read_data;

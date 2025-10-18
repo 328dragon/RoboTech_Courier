@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "upper.h": "c"
+        "upper.h": "c",
+        "array": "cpp"
     }
 }
