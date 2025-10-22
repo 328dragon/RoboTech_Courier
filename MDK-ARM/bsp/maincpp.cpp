@@ -26,7 +26,7 @@
 #include "gw_grasycalse.h"
 #include "com_grasycalse.h"
 #include "logic.h"
-#define code_mode 0
+#define 	code_mode 0
 extern "C"
 {
 #include "SR04.h"
@@ -135,8 +135,8 @@ void upper_move_task(void *pvParameters)
   while (1)
   {
     upper_to_target(target_upper_loacation);
-		    SR04_GetData(&SR04_front);
-    map_left_down._current_distance = SR04_front.distant;
+		 SR04_GetData(&SR04_front);
+    
     vTaskDelay(100);
   }
 }
@@ -150,7 +150,7 @@ void gray_read_task(void *pvParameters)
   while (1)
   {
    Gw_GrayscaleSensor_front.read_data();
-
+map_left_down._current_distance = SR04_front.distant;
     vTaskDelay(10);
   }
 }
@@ -170,10 +170,10 @@ float target_rad(Maze &maze)
 
  void move_to_next_block()
 {
-		last_rad=tar_rad;
+		
   while (map_left_down.update_next_dir())
   {
-	 tar_rad=target_rad(map_left_down);
+	 	tar_rad=target_rad(map_left_down);
     // 只管转向
 		 auto &turn_move  = Planner.LoactaionCloseControl({0, 0, tar_rad-last_rad}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
     while (turn_move.isResolved() == false)
@@ -181,10 +181,10 @@ float target_rad(Maze &maze)
 			
       vTaskDelay(50);
     }
-	
-    vTaskDelay(200);
+	last_rad=tar_rad;
+   vTaskDelay(20);
   }
-	
+		
   map_left_down.update_self_position(); // 刷地图
 
 
@@ -195,8 +195,10 @@ float target_rad(Maze &maze)
     vTaskDelay(50);
   }
  Controller.SetVelTarget({0, 0, 0});
+ 
   Controller.Clear();
   vTaskDelay(50);
+ 
 	auto &straight_move= Planner.LoactaionCloseControl({0.16,0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
   while (straight_move.isResolved() == false)
   {
