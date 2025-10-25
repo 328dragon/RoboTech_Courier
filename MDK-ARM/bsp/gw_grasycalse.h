@@ -100,7 +100,7 @@ protected:
     uint8_t data[8];//有八个光电管，左0右8
 	I2C_HandleTypeDef * I2C_handle;
     pid_base_template_t<float,float> pid = pid_base_template_t<float,float>({0.1, 0, 0.1, -3, 3});
-    pid_base_template_t<float,float> pidx = pid_base_template_t<float,float>({0.010, 0, 0.01, -0.3, 0.3});
+    pid_base_template_t<float,float> pidx = pid_base_template_t<float,float>({0.025, 0, 0.01, -0.3, 0.3});
 private:
 unsigned char Salve_Adress;
 unsigned char Digital_read_data;

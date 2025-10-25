@@ -58,13 +58,13 @@ bool Maze::update_next_dir()
     {
          _forbid_dir = DOWN;
     }
-    if(_y==0 && _whichground==1)
-    {
-         _forbid_dir = LEFT;
-    }
-    if(_y==7 && _whichground==0)
+    if(_y==7 && _whichground==1)
     {
          _forbid_dir = RIGHT;
+    }
+    if(_y==0 && _whichground==0)
+    {
+         _forbid_dir = LEFT;
     }
     //如果没有障碍，将current_dir设为_prior_dir数组中从头到尾遍历第一个不和_forbid_dir相同的方向
     //并在此逻辑中恢复堵车状态，但不改变此时的current_dir

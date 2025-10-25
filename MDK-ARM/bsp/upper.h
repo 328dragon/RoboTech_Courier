@@ -16,6 +16,10 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "stdbool.h"
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 typedef enum
 {
@@ -24,5 +28,8 @@ typedef enum
 } upper_location;
 void upper_move_distance(uint8_t addr, uint8_t dir, uint16_t vel, uint8_t acc, uint32_t clk, bool raF, bool snF);
 void upper_to_target(upper_location target_position);
+#ifdef __cplusplus
+}
+#endif
 
 #endif

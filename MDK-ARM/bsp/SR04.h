@@ -5,6 +5,10 @@
 #include "stdio.h"
 #include "stm32f4xx_hal_tim.h"
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 //利用顺序状态，和定时器计算
 typedef struct SR04_Struct
 {
@@ -25,5 +29,8 @@ void SR04_Register(SR04_t *SR04, GPIO_TypeDef *Trig_Port, uint16_t Trig_Pin,
 void SR04_Elapsed_callback(SR04_t *_SR04);
 void SR04_Echo_IC_callback(SR04_t *_SR04);
 void SR04_GetData(SR04_t *_SR04);
+#ifdef __cplusplus
+}
+#endif
 
 #endif
