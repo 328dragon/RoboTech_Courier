@@ -52,14 +52,14 @@ public:
     {
         float error = 0;
 
-			      error -= data[0] * 4;
-        error -= data[1] * 3;
-        error -= data[2]*2;
+				   error -= data[0] * 9;
+        error -= data[1] * 5;
+        error -= data[2]*3;
         error -= data[3]*1;
         error += data[4] * 1;
-        error += data[5] * 2;
-			 error += data[6] * 3;
-			 error += data[7] * 4;
+        error += data[5] * 3;
+			 error += data[6] * 5;
+			 error += data[7] * 9;
         control = pidx.update(error);
         return control;
     }

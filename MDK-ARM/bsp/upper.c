@@ -32,8 +32,8 @@ void upper_move_distance(uint8_t addr, uint8_t dir, uint16_t vel, uint8_t acc, u
 static void upper_move_location(upper_location now_location, upper_location target_position)
 {
     int down_pulse = 200;
-    int up_pulse = 1800;
-	
+//    int up_pulse = 1800;
+	  int up_pulse = 4200;
     switch (now_location)
     {
     case down_location:

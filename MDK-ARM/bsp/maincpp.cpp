@@ -219,7 +219,24 @@ void HC08_Ctrl()
 	if(Calibration_flag==1)
 	{
 		Calibration_flag=0;
-	
+		KinematicOdom.CurrentOdom.x=0;
+		KinematicOdom.CurrentOdom.y=0;	
+
+	 while (Gw_GrayscaleSensor_front.IsCurrentMode(GW_grasycalse::GrasyOnLine)==0)
+  {
+    // 沿线前进
+    Controller.SetVelTarget({0.13, Gw_GrayscaleSensor_front.ReturnXControl(), 0});
+    vTaskDelay(50);
+  }
+ Controller.SetVelTarget({0, 0, 0});
+  Controller.Clear();
+  vTaskDelay(50);
+	auto &straight_move= Planner.LoactaionCloseControl({0.16,0, 0}, 0.5, 1.0, {0.1, 0.1, 0.1}, false);
+  while (straight_move.isResolved() == false)
+  {
+    vTaskDelay(50);
+  }		
+		
 	}
 	
 }
@@ -441,11 +458,11 @@ void HC08CallBack(void *param)
     }
 				    if (HC08Uart.recv_buff[8] ==0x21 && HC08Uart.recv_buff[HC08_length+1] ==0X21 )
     {
-     put_flag=1;
+     target_upper_loacation=down_location;
     }
 						    if (HC08Uart.recv_buff[9] ==0x2C && HC08Uart.recv_buff[HC08_length+1] ==0X2C )
     {
-     get_flag=1;
+      target_upper_loacation=up_location;
     }
   }
 }
